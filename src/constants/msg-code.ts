@@ -1,23 +1,25 @@
-export default class MsgCode {
-    public static readonly OK: string = 'OK';
+enum MsgCode {
+    OK = 'OK',
 
-    public static readonly HTTP_INVALID_PARAM: string = 'HTTP_INVALID_PARAM';
+    HTTP_INVALID_PARAM = 'HTTP_INVALID_PARAM',
 
-    public static readonly EMAIL_REQUIRED: string = 'EMAIL_REQUIRED';
-    public static readonly USERNAME_REQUIRED: string = 'USERNAME_REQUIRED';
-    public static readonly PASSWORD_REQUIRED: string = 'PASSWORD_REQUIRED';
+    EMAIL_REQUIRED = 'EMAIL_REQUIRED',
+    USERNAME_REQUIRED = 'USERNAME_REQUIRED',
+    PASSWORD_REQUIRED = 'PASSWORD_REQUIRED',
 
-    public static readonly EMAIL_INVALID: string = 'EMAIL_INVALID';
-    public static readonly USERNAME_INVALID: string = 'USERNAME_INVALID';
-    public static readonly PASSWORD_INVALID: string = 'PASSWORD_INVALID';
+    EMAIL_INVALID = 'EMAIL_INVALID',
+    USERNAME_INVALID = 'USERNAME_INVALID',
+    PASSWORD_INVALID = 'PASSWORD_INVALID',
 
-    public static readonly EMAIL_OCCUPIED: string = 'EMAIL_OCCUPIED';
-    public static readonly USERNAME_OCCUPIED: string = 'USERNAME_OCCUPIED';
+    EMAIL_OCCUPIED = 'EMAIL_OCCUPIED',
+    USERNAME_OCCUPIED = 'USERNAME_OCCUPIED',
 
-    public static readonly EMAIL_NOT_FOUND: string = 'EMAIL_NOT_FOUND';
-    public static readonly USERNAME_NOT_FOUND: string = 'USERNAME_NOT_FOUND';
-    public static readonly PASSWORD_INCORRECT: string = 'PASSWORD_INCORRECT';
+    EMAIL_NOT_FOUND = 'EMAIL_NOT_FOUND',
+    USERNAME_NOT_FOUND = 'USERNAME_NOT_FOUND',
+    PASSWORD_INCORRECT = 'PASSWORD_INCORRECT',
 
-    public static readonly DB_FAILED: string = 'DB_FAILED';
+    DB_FAILED = 'DB_FAILED'
 
 }
+
+export default MsgCode
