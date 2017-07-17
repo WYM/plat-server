@@ -9,6 +9,7 @@ import Config from './config'
 import Trace from './utils/trace'
 import router from './router';
 import msgParser from './middleware/msg-parser'
+import innerMsg from './middleware/inner-msg'
 
 const app = new Koa();
 
@@ -35,6 +36,7 @@ app.use(Redis(Config.redis));
 // msg-parser
 app.use(bodyParser());
 app.use(msgParser());
+app.use(innerMsg());
 
 // koa-json
 app.use(json());

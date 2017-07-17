@@ -11,6 +11,7 @@ declare module "koa" {
             db?: Database
             redis?: Redis.Redis
             msg?: Msg
+            imsg?: Msg
         };
     }
 
