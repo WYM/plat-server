@@ -5,6 +5,9 @@
 
 import * as Mongoose from 'mongoose'
 import { IUser, UserModel } from '../models/user';
+import { ICdkey, CdkeyModel } from '../models/cdkey';
+import { ICdkeyTpl, CdkeyTplModel } from '../models/cdkey-tpl';
+import { IApp, AppModel } from '../models/app';
 
 export interface DbConfig {
     host: string
@@ -12,6 +15,9 @@ export interface DbConfig {
 
 export interface Database {
     user: Mongoose.Model<IUser>;
+    cdkey: Mongoose.Model<ICdkey>;
+    cdkeyTpl: Mongoose.Model<ICdkeyTpl>;
+    app: Mongoose.Model<IApp>;
 }
 
 export default function init(config: DbConfig): Database {
@@ -32,7 +38,10 @@ export default function init(config: DbConfig): Database {
     });
 
     return {
-        user: UserModel
+        user: UserModel,
+        cdkey: CdkeyModel,
+        cdkeyTpl: CdkeyTplModel,
+        app: AppModel
     }
 
 }

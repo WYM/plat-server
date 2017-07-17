@@ -20,6 +20,9 @@ enum MsgCode {
 
     INVALID_TOKEN = 'INVALID_TOKEN',
 
+    CDKEY_INVALID = 'CDKEY_INVALID',
+    CDKEY_USED = 'CDKEY_USED',
+
     DB_FAILED = 'DB_FAILED'
 
 }

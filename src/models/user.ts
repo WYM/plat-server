@@ -7,6 +7,7 @@ export interface IUser extends Mongoose.Document {
     password: string;
     salt: string;
     avatar: string;
+    apps: Array<string>;
 };
 
 export const UserSchema = new Mongoose.Schema({
@@ -34,6 +35,10 @@ export const UserSchema = new Mongoose.Schema({
     },
     avatar: {
         type: String,
+        required: true
+    },
+    apps: {
+        type: Array,
         required: true
     },
     createTime: {
