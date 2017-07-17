@@ -22,10 +22,6 @@ class Auth {
     public static async beforeAuth(ctx: Koa.Context, next) {
         const { db, redis, msg, imsg } = ctx.service;
         const datr_user: string = await redis.get(Config.cache_key.user_token + msg.token);
-        console.log(datr_user);
-        if (datr_user) {
-            console.log('token uid: ' + datr_user);
-        }
 
         if (!datr_user || datr_user.length <= 0) {
             ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
