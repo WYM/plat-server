@@ -3,11 +3,11 @@ import Config from '../config'
 import Msg from '../constants/msg'
 import MsgCode from '../constants/msg-code'
 
-export default function auth(type: string) {
+export default function auth(options?: { getUser: boolean }) {
     return (target: any, key: string, descriptor: PropertyDescriptor) => {
         const f = descriptor.value;
         descriptor.value = async (ctx: Koa.Context, next) => {
-            const ctx_r = await Auth.beforeAuth(ctx, next);
+            const ctx_r = await Auth.beforeAuth(ctx, next, options);
             if (!ctx_r.body) {
                 await f(ctx_r, next);
             }
@@ -19,7 +19,7 @@ export default function auth(type: string) {
 
 class Auth {
 
-    public static async beforeAuth(ctx: Koa.Context, next) {
+    public static async beforeAuth(ctx: Koa.Context, next, options) {
         const { db, redis, msg, imsg } = ctx.service;
         const datr_user: string = await redis.get(Config.cache_key.user_token + msg.token);
 
@@ -30,13 +30,19 @@ class Auth {
 
         imsg.uid = datr_user;
 
-        // no db query, improve performence
-        // const condition = { id: imsg.uid };
-        // const dat_users = await db.user.find(condition);
-        // if (!dat_users || dat_users.length <= 0) {
-        //     ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
-        //     return ctx;
-        // }
+        if (options) {
+            if (options.getUser) {
+                const condition = { _id: imsg.uid };
+                const dat_users = await db.user.find(condition);
+
+                if (!dat_users || dat_users.length <= 0) {
+                    ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
+                    return ctx;
+                } else {
+                    ctx.service.imsg.user = dat_users[0];
+                }
+            }
+        }
 
         return ctx;
     }

@@ -7,7 +7,7 @@ import Auth from '../decorators/auth'
 
 export default class Cdkey {
 
-    @Auth('user')
+    @Auth({ getUser: true })
     public static async onUse(ctx: Koa.Context, next) {
         console.log(ctx.service);
         const { db, msg, imsg } = ctx.service;
