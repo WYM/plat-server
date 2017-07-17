@@ -4,6 +4,7 @@ export default class Msg {
     public status: string;
     public token: string;
 
+    public uid: string;
     public email: string;
     public username: string;
     public password: string;
