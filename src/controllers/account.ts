@@ -33,7 +33,7 @@ export default class Account {
         }
 
         const token = Encrypt.generateToken(dat_user.id);
-        await redis.set(Config.cache_key.user_token + token, { id: dat_user.id });
+        await redis.set(Config.cache_key.user_token + token, dat_user.id);
 
         Trace.info(`User login [${dat_user.username}(${dat_user.email})], id: ${dat_user.id}, token: ${token}.`);
 
