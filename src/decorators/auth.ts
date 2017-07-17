@@ -39,7 +39,7 @@ class Auth {
                     ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
                     return ctx;
                 } else {
-                    ctx.service.imsg.user = dat_users[0];
+                    imsg.user = dat_users[0];
                 }
             }
         }
