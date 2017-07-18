@@ -1,6 +1,7 @@
 import MsgCode from './msg-code'
 import { IUser } from '../models/user'
 import { IApp } from '../models/app'
+import { ISavedataItem } from '../models/savedata'
 
 export default class Msg {
     public status: string;
@@ -15,8 +16,11 @@ export default class Msg {
 
     public user: IUser;
 
+    public appid: string;
     public app: IApp;
     public apps: IApp[];
+
+    public savedata: ISavedataItem;
 
     public static create(status: string = MsgCode.OK): Msg {
         const msg = new Msg();

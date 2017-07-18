@@ -24,6 +24,8 @@ enum MsgCode {
     CDKEY_USED = 'CDKEY_USED',
     APP_ALREADY_HAVE = 'APP_ALREADY_HAVE',
 
+    NO_SAVE = 'NO_SAVE',
+
     DB_FAILED = 'DB_FAILED'
 
 }

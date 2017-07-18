@@ -8,4 +8,8 @@ export default class Url {
     public static readonly CDKEY_INFO: string = '/cdkey/info';
     public static readonly CDKEY_USE: string = '/cdkey/use';
 
+    // CLOUD-SAVE
+    public static readonly CLOUD_SAVE_INFO: string = '/cloud_save/info';
+    public static readonly CLOUD_SAVE_UPLOAD: string = '/cloud_save/upload';
+
 }

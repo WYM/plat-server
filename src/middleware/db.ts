@@ -8,6 +8,7 @@ import { IUser, UserModel } from '../models/user';
 import { ICdkey, CdkeyModel } from '../models/cdkey';
 import { ICdkeyTpl, CdkeyTplModel } from '../models/cdkey-tpl';
 import { IApp, AppModel } from '../models/app';
+import { ISavedata, SavedataModel } from '../models/savedata';
 
 export interface DbConfig {
     host: string
@@ -18,6 +19,7 @@ export interface Database {
     cdkey: Mongoose.Model<ICdkey>;
     cdkeyTpl: Mongoose.Model<ICdkeyTpl>;
     app: Mongoose.Model<IApp>;
+    savedata: Mongoose.Model<ISavedata>
 }
 
 export default function init(config: DbConfig): Database {
@@ -41,7 +43,8 @@ export default function init(config: DbConfig): Database {
         user: UserModel,
         cdkey: CdkeyModel,
         cdkeyTpl: CdkeyTplModel,
-        app: AppModel
+        app: AppModel,
+        savedata: SavedataModel
     }
 
 }
