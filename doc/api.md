@@ -33,6 +33,9 @@
 
 ### /account/login
 用户登入
+
+[Not Finished*] 每次登入完成时，如果该用户有未过期的token，自动清理。
+
 #### 验证：无
 #### 上传
     email           string          邮箱 (与用户名任填其一)
@@ -85,6 +88,37 @@
     apps            IApp[]          使用激活码后 玩家拥有的所有App信息
 
 ----
+
+## CloudSave [Not Finished*]
+
+### /cloud_save/info
+获取云存档当前状态。
+#### 验证：@Auth()
+#### 上传
+    appid           string          app唯一标识
+
+#### 下发
+    status          string          状态码
+        OK                              正常
+        NO_SAVE                         无该App的存档
+    savedata        ISavedata.data  存档信息
+
+### /cloud_save/upload
+上传云存档。该接口比较特殊，需要将Content-Type设为form-data发送，且直接发Http参数，不嵌套Msg结构。
+#### 验证：@Auth()
+#### 上传
+    appid           string          app唯一标识
+    file            binary          存档数据
+            
+#### 下发
+    status          string          状态码
+        OK                              正常
+        NO_SAVE                         无该App的存档
+    savedata        ISavedata.data  存档信息
+
+
+----
+
 ## Migration
 
 ### /migrate
@@ -103,6 +137,8 @@
 该验证根据客户端提供的token，检查其登录状态，并依此找出对应的用户信息。
 
 所有使用该验证的接口，在执行自身逻辑前都会先检查验证条件，不满足时将直接返回状态码。
+
+[Not Finished*] 每次验证完成时，都将刷新该用户 token 有效期。
 #### 上传
     token           string          登录凭证 在登录时取得
 #### 下发
@@ -150,3 +186,13 @@ App信息实体，与数据库结构一致。
 
     name: string; 
     identifier: string;
+
+### ISavedata
+存档信息实体，与数据库结构一致。
+
+    uid: string;
+    data: {
+        appid: string;
+        filename: string;
+        update: number;
+    }[];
