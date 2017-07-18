@@ -73,10 +73,29 @@ export default class Cdkey {
             return ctx;
         }
 
-        
+        const apps = imsg.user.apps;
+        for (let i = 0; i < apps.length; i++) {
+            if (apps[i] == dat_app.id) {
+                ctx.body = Msg.create(MsgCode.APP_ALREADY_HAVE);
+                return ctx;
+            }
+        }
+
+        imsg.user.apps.push(dat_app.id);
+        const result = await imsg.user.save();
+        if (!result) {
+            ctx.body = Msg.create(MsgCode.DB_FAILED);
+            return ctx;
+        }
+
+        dat_cdkey.userId = imsg.user.id;
+        const cdkey_result = await dat_cdkey.save();
+        if (!cdkey_result) {
+            Trace.error(JSON.stringify({ uid: imsg.user.id, cdkey: dat_cdkey.id, msg: 'user got the app, otherwise the `userId` of cdkey not updated.' }));
+        }
 
         const send = Msg.create();
-        send.uid = imsg.uid;
+        send.apps = await db.app.where('_id').in(imsg.user.apps).find();
 
         ctx.body = { msg: send };
     }
