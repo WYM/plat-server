@@ -8,11 +8,13 @@
     "watch": "tsc -w -p .",
     "deamon": "nodemon ./build/app.js",
     "dev": "concurrently \"npm run watch\" \"npm run deamon\"",
-    "start": "node ./build/app.js"
+    "start": "node ./build/app.js",
+    "test": "mocha ./build/test --recursive"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.0.1",
     "@types/ioredis": "0.0.23",
     "@types/kcors": "^2.2.1",
     "@types/koa": "^2.0.39",
@@ -20,11 +22,14 @@
     "@types/koa-compress": "^2.0.6",
     "@types/koa-json": "^2.0.16",
     "@types/koa-router": "^7.0.22",
+    "@types/mocha": "^2.2.41",
     "@types/mongoose": "^4.7.18",
     "@types/node": "^7.6.0",
+    "chai": "^4.1.0",
     "concurrently": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.0",
+    "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "pm2": "^2.5.0"
   },
