@@ -52,7 +52,7 @@ export default class Validate {
         return true;
     }
 
-    private static validateLength(val: string, limit: Array<number>): boolean {
+    public static validateLength(val: string, limit: Array<number>): boolean {
         return !(val.length < limit[0] || val.length > limit[1]);
     }
 
