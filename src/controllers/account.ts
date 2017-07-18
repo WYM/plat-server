@@ -58,7 +58,8 @@ export default class Account {
             nickname: msg.username,
             password: Encrypt.encryptPassword(msg.password, salt),
             salt: salt,
-            avatar: Config.user.default_avatar
+            avatar: Config.user.default_avatar,
+            apps: []
         });
 
         if (msg.email) {
