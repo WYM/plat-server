@@ -2,6 +2,7 @@ import * as Koa from 'koa';
 import Config from '../config'
 import Msg from '../constants/msg'
 import MsgCode from '../constants/msg-code'
+import Trace from '../utils/trace'
 
 export default function auth(options?: { getUser: boolean }) {
     return (target: any, key: string, descriptor: PropertyDescriptor) => {
@@ -33,13 +34,20 @@ class Auth {
         if (options) {
             if (options.getUser) {
                 const condition = { _id: imsg.uid };
-                const dat_users = await db.user.find(condition);
+                console.log('id: ' + imsg.uid);
+                try {
+                    const dat_users = await db.user.find(condition);
 
-                if (!dat_users || dat_users.length <= 0) {
+                    if (!dat_users || dat_users.length <= 0) {
+                        ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
+                        return ctx;
+                    } else {
+                        imsg.user = dat_users[0];
+                    }
+                } catch (e) {
+                    Trace.error(e);
                     ctx.body = Msg.create(MsgCode.INVALID_TOKEN);
                     return ctx;
-                } else {
-                    imsg.user = dat_users[0];
                 }
             }
         }
