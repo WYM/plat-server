@@ -14,7 +14,9 @@ export default class Msg {
     public cdkey: string;
 
     public user: IUser;
+
     public app: IApp;
+    public apps: IApp[];
 
     public static create(status: string = MsgCode.OK): Msg {
         const msg = new Msg();

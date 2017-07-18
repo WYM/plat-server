@@ -39,6 +39,7 @@ export default class Account {
 
         const send = Msg.create();
         send.token = token;
+        send.apps = await db.app.where('_id').in(dat_user.apps).find();
         ctx.body = send;
     }
 
