@@ -12,6 +12,8 @@ export default function () {
                 Trace.error(e);
                 ctx.service.msg = Msg.create();
             }
+        } else {
+            ctx.service.msg = Msg.create();
         }
         await next();
     }
