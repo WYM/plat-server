@@ -44,6 +44,7 @@ export default class CloudSave {
     @Auth({ getUser: true })
     public static async onUpload(ctx: Koa.Context, next) {
         const { db, msg, imsg } = ctx.service;
+        msg.appid = ctx.query.appid;
 
         let dat_saved: ISavedata = await db.savedata.where('uid').equals(imsg.user.id);
         if (!dat_saved) {
