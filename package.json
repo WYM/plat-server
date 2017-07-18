@@ -11,7 +11,7 @@
     "start": "node ./build/app.js",
     "test": "mocha ./build/test --recursive"
   },
-  "author": "",
+  "author": "wangyiming <wymm0008@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.0.1",
